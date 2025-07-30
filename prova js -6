@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+      
+let listaNomes = [];
+let continuar = true;
+
+
+function adicionarNome() {
+    const nome = prompt("Digite o nome a ser adicionado:");
+    if (nome) {
+        listaNomes.push(nome);
+        console.log(`Nome "${nome}" adicionado. Lista atual:`, listaNomes);
+    } else {
+        console.log("Nenhum nome foi digitado.");
+    }
+}
+
+
+function filtrarNomes() {
+    const letra = prompt("Digite a letra inicial para filtrar:").toUpperCase();
+    if (letra && letra.length === 1) {
+        const nomesFiltrados = listaNomes.filter(nome => 
+            nome.toUpperCase().startsWith(letra)
+        );
+        console.log(`Nomes que começam com "${letra}":`, nomesFiltrados);
+    } else {
+        console.log("Por favor, digite uma única letra.");
+    }
+}
+
+
+function buscarNome() {
+    const nomeBusca = prompt("Digite o nome exato a ser buscado:");
+    if (nomeBusca) {
+        const nomeEncontrado = listaNomes.find(nome => 
+            nome.toLowerCase() === nomeBusca.toLowerCase()
+        );
+        if (nomeEncontrado) {
+            console.log(`Nome encontrado: "${nomeEncontrado}"`);
+        } else {
+            console.log(`Nome "${nomeBusca}" não encontrado na lista.`);
+        }
+    } else {
+        console.log("Nenhum nome foi digitado para busca.");
+    }
+}
+
+
+function transformarNomes() {
+    const nomesMaiusculos = listaNomes.map(nome => nome.toUpperCase());
+    console.log("Nomes em maiúsculas:", nomesMaiusculos);
+}
+
+
+function verificarNomes() {
+    const todosMaisDeTres = listaNomes.every(nome => nome.length > 3);
+    console.log(`Todos os nomes têm mais de 3 caracteres? ${todosMaisDeTres}`);
+}
+
+
+while (continuar) {
+    const opcao = prompt(
+        `Escolha uma opção:
+        1 - Adicionar nome
+        2 - Filtrar nomes por letra inicial
+        3 - Buscar nome exato
+        4 - Transformar nomes em maiúsculas
+        5 - Verificar se todos os nomes têm mais de 3 caracteres
+        6 - Sair
+        
+        Lista atual: ${listaNomes.join(", ")}`
+    );
+
+    switch (opcao) {
+        case "1":
+            adicionarNome();
+            break;
+        case "2":
+            filtrarNomes();
+            break;
+        case "3":
+            buscarNome();
+            break;
+        case "4":
+            transformarNomes();
+            break;
+        case "5":
+            verificarNomes();
+            break;
+        case "6":
+            continuar = false;
+            console.log("Programa encerrado. Lista final:", listaNomes);
+            break;
+        default:
+            console.log("Opção inválida. Tente novamente.");
+    }
+}
+    </script>
+    
+</body>
+</html>
